@@ -7,12 +7,16 @@ ARG XFCE_VERSION
 LABEL build_version="Linuxserver.io version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 LABEL maintainer="thelamer"
 
-# title
-ENV TITLE="Ubuntu XFCE"
+RUN sudo apt update
+RUN sudo apt upgrade -y
 RUN sudo apt install flatpak -y
 RUN flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 RUN flatpak install flathub org.mozilla.firefox -y
 RUN flatpak install flathub org.xfce.mousepad
+
+# title
+ENV TITLE="Ubuntu XFCE"
+
 RUN \
   echo "**** add icon ****" && \
   curl -o \
