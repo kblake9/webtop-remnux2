@@ -23,18 +23,20 @@ RUN \
   curl -o \
     /kclient/public/icon.png \
     https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/webtop-logo.png && \
+RUN \
   echo "**** install packages ****" && \
       sudo apt install faenza-icon-theme -y && \
       sudo apt install thunar -y && \
-      sudo apt-get install xfce4 -y && \
+      sudo apt-get install xfce4 -y
 
+RUN \
       wget https://REMnux.org/remnux-cli && \
       mv remnux-cli remnux && \
       chmod +x remnux && \
       sudo mv remnux /usr/local/bin && \
       sudo apt install -y gnupg curl -y && \
-      sudo remnux install --mode=cloud -y && \
-    
+      sudo remnux install --mode=cloud -y
+ RUN \   
   echo "**** cleanup ****" && \
   rm -f \
     /etc/xdg/autostart/xfce4-power-manager.desktop \
