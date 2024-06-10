@@ -13,6 +13,7 @@ RUN sudo apt install flatpak -y
 RUN flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 RUN flatpak install flathub org.mozilla.firefox -y
 RUN flatpak install flathub org.xfce.mousepad -y
+RUN sudo apt install wget -y
 
 # title
 ENV TITLE="Ubuntu XFCE"
