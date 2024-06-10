@@ -1,4 +1,4 @@
-FROM ghcr.io/linuxserver/baseimage-kasmvnc:alpine320
+FROM ghcr.io/linuxserver/webtop:ubuntu-xfce
 
 # set version label
 ARG BUILD_DATE
@@ -8,7 +8,7 @@ LABEL build_version="Linuxserver.io version:- ${VERSION} Build-date:- ${BUILD_DA
 LABEL maintainer="thelamer"
 
 # title
-ENV TITLE="Alpine XFCE"
+ENV TITLE="Ubuntu XFCE"
 
 RUN \
   echo "**** add icon ****" && \
@@ -27,6 +27,14 @@ RUN \
     util-linux-misc \
     xfce4 \
     xfce4-terminal && \
+
+    wget https://REMnux.org/remnux-cli && \
+    mv remnux-cli remnux && \
+    chmod +x remnux && \
+    sudo mv remnux /usr/local/bin && \
+    sudo apt install -y gnupg curl && \
+    sudo remnux install --mode=cloud && \
+    
   echo "**** cleanup ****" && \
   rm -f \
     /etc/xdg/autostart/xfce4-power-manager.desktop \
