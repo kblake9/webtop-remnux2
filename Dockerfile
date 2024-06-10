@@ -12,7 +12,7 @@ RUN sudo apt upgrade -y
 RUN sudo apt install flatpak -y
 RUN flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 RUN flatpak install flathub org.mozilla.firefox -y
-RUN flatpak install flathub org.xfce.mousepad
+RUN flatpak install flathub org.xfce.mousepad -y
 
 # title
 ENV TITLE="Ubuntu XFCE"
@@ -23,16 +23,16 @@ RUN \
     /kclient/public/icon.png \
     https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/webtop-logo.png && \
   echo "**** install packages ****" && \
-      sudo apt install faenza-icon-theme && \
-      sudo apt install thunar && \
-      sudo apt-get install xfce4 && \
+      sudo apt install faenza-icon-theme -y && \
+      sudo apt install thunar -y && \
+      sudo apt-get install xfce4 -y && \
 
       wget https://REMnux.org/remnux-cli && \
       mv remnux-cli remnux && \
       chmod +x remnux && \
       sudo mv remnux /usr/local/bin && \
-      sudo apt install -y gnupg curl && \
-      sudo remnux install --mode=cloud && \
+      sudo apt install -y gnupg curl -y && \
+      sudo remnux install --mode=cloud -y && \
     
   echo "**** cleanup ****" && \
   rm -f \
