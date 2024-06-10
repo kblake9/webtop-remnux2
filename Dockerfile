@@ -1,4 +1,4 @@
-FROM ghcr.io/linuxserver/baseimage-kasmvnc:alpine320
+FROM ghcr.io/linuxserver/webtop:ubuntu-xfce
 
 # set version label
 ARG BUILD_DATE
@@ -8,32 +8,27 @@ LABEL build_version="Linuxserver.io version:- ${VERSION} Build-date:- ${BUILD_DA
 LABEL maintainer="thelamer"
 
 # title
-ENV TITLE="Alpine XFCE"
-
+ENV TITLE="Ubuntu XFCE"
+RUN sudo apt install flatpak -y
+RUN flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+RUN flatpak install flathub org.mozilla.firefox -y
+RUN flatpak install flathub org.xfce.mousepad
 RUN \
   echo "**** add icon ****" && \
   curl -o \
     /kclient/public/icon.png \
     https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/webtop-logo.png && \
   echo "**** install packages ****" && \
-  apk add --no-cache \
-    faenza-icon-theme \
-    faenza-icon-theme-xfce4-appfinder \
-    faenza-icon-theme-xfce4-panel \
-    firefox \
-    mousepad \
-    ristretto \
-    thunar \
-    util-linux-misc \
-    xfce4 \
-    xfce4-terminal && \
+      sudo apt install faenza-icon-theme && \
+      sudo apt install thunar && \
+      sudo apt-get install xfce4 && \
 
-    wget https://REMnux.org/remnux-cli && \
-    mv remnux-cli remnux && \
-    chmod +x remnux && \
-    sudo mv remnux /usr/local/bin && \
-    sudo apt install -y gnupg curl && \
-    sudo remnux install --mode=cloud && \
+      wget https://REMnux.org/remnux-cli && \
+      mv remnux-cli remnux && \
+      chmod +x remnux && \
+      sudo mv remnux /usr/local/bin && \
+      sudo apt install -y gnupg curl && \
+      sudo remnux install --mode=cloud && \
     
   echo "**** cleanup ****" && \
   rm -f \
