@@ -1,4 +1,4 @@
-FROM ghcr.io/linuxserver/webtop:ubuntu-xfce
+FROM ghcr.io/linuxserver/baseimage-kasmvnc:alpine320
 
 # set version label
 ARG BUILD_DATE
@@ -8,7 +8,7 @@ LABEL build_version="Linuxserver.io version:- ${VERSION} Build-date:- ${BUILD_DA
 LABEL maintainer="thelamer"
 
 # title
-ENV TITLE="Ubuntu XFCE"
+ENV TITLE="Alpine XFCE"
 
 RUN \
   echo "**** add icon ****" && \
