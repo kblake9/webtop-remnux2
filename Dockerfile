@@ -36,7 +36,7 @@ RUN \
 RUN \
       sudo mv remnux /usr/local/bin && \
       sudo apt install -y gnupg curl  && \
-      sudo remnux install --mode=cloud --user=root
+      sudo remnux install --root-user-action=ignore --mode=cloud 
  RUN \   
   echo "**** cleanup ****" && \
   rm -f \
