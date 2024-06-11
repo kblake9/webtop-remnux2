@@ -32,7 +32,8 @@ RUN \
 RUN \
       wget https://REMnux.org/remnux-cli && \
       mv remnux-cli remnux && \
-      chmod +x remnux && \
+      chmod +x remnux
+RUN \
       sudo mv remnux /usr/local/bin && \
       sudo apt install -y gnupg curl  && \
       sudo remnux install --mode=cloud -y
