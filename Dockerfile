@@ -32,8 +32,8 @@ RUN \
 RUN export DEBIAN_FRONTEND=noninteractive && \
     apt-get update && \
     apt-get install -y wget gnupg git && \
-    # wget https://github.com/ekristen/cast/releases/download/v${CAST_VER}/cast_v${CAST_VER}_linux_amd64.deb && \
-    dpkg -i /cast_v${CAST_VER}_linux_amd64.deb && \
+    wget https://github.com/ekristen/cast/releases/download/v0.14.31/cast_v0.14.31_linux_amd64.deb && \
+    dpkg -i /cast_v0.14.31_linux_amd64.deb && \
     cast install --mode cloud --user remnux remnux && \
     rm -rf /root/.cache/* && \
     unset DEBIAN_FRONTEND
