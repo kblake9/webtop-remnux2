@@ -34,9 +34,9 @@ RUN \
       mv remnux-cli remnux && \
       chmod +x remnux
 RUN \
-      # sudo mv remnux /usr/local/bin && \
+      sudo mv remnux /usr/local/bin && \
       sudo apt install -y gnupg curl  && \
-      sudo remnux install --mode=cloud -y
+      sudo apt install remnux -y
  RUN \   
   echo "**** cleanup ****" && \
   rm -f \
