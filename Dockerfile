@@ -31,15 +31,6 @@ LABEL maintainer="Lenny Zeltser (@lennyzeltser, zeltser.com)"
 LABEL version="v2023.9.1"
 ARG CAST_VER=0.14.0
 
-RUN sudo apt install flatpak -y
-RUN flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-RUN flatpak install flathub org.mozilla.firefox -y
-RUN flatpak install flathub org.xfce.mousepad -y
-RUN \
-  echo "**** install packages ****" && \
-      sudo apt install faenza-icon-theme -y && \
-      sudo apt install thunar -y && \
-      sudo apt-get install xfce4 -y
 
 USER root
 
@@ -57,6 +48,16 @@ RUN rm /tmp/cast_v${CAST_VER}_linux_amd64.deb
 
 ENV TERM linux
 WORKDIR /home/remnux
+
+RUN sudo apt install flatpak -y
+RUN flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+RUN flatpak install flathub org.mozilla.firefox -y
+RUN flatpak install flathub org.xfce.mousepad -y
+RUN \
+  echo "**** install packages ****" && \
+      sudo apt install faenza-icon-theme -y && \
+      sudo apt install thunar -y && \
+      sudo apt-get install xfce4 -y
 
 RUN mkdir /var/run/sshd
 EXPOSE 3000
