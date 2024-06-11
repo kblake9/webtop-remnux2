@@ -29,14 +29,17 @@ RUN \
       sudo apt install thunar -y && \
       sudo apt-get install xfce4 -y
 
-RUN \
-      wget https://REMnux.org/remnux-cli && \
-      mv remnux-cli remnux && \
-      chmod +x remnux
-RUN \
-      sudo mv remnux /usr/local/bin && \
-      sudo apt install -y gnupg curl  && \
-      sudo remnux install --user=remnux --mode=cloud 
+RUN export DEBIAN_FRONTEND=noninteractive && \
+    apt-get update && \
+    apt-get install -y wget gnupg git && \
+    wget https://github.com/ekristen/cast/releases/download/v${CAST_VER}/cast_v${CAST_VER}_linux_amd64.deb && \
+    dpkg -i /cast_v${CAST_VER}_linux_amd64.deb && \
+    cast install --mode cloud --user remnux remnux && \
+    rm -rf /root/.cache/* && \
+    unset DEBIAN_FRONTEND
+
+RUN rm /cast_v${CAST_VER}_linux_amd64.deb
+
  RUN \   
   echo "**** cleanup ****" && \
   rm -f \
